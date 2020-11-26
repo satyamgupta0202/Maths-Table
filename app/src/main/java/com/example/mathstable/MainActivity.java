@@ -12,17 +12,27 @@ import android.widget.SeekBar;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    int value;
+    ListView myListView;
+    public void generate (int timetablenum){
+        ArrayList<String> tt = new ArrayList<>();
+        for(int j=1;j<=10;j++) {
+            tt.add(Integer.toString(j*timetablenum));
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, tt);
+        myListView.setAdapter(arrayAdapter);
+        Log.i("seek bar value",Integer.toString(timetablenum));
+    }
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView myListView = findViewById(R.id.myListView);
+        myListView = findViewById(R.id.myListView);
         SeekBar  seekbar    = findViewById(R.id.seekBar);
-        seekbar.setMax(20);
-        seekbar.setProgress(10);
+        int max = 20;
+        int curr = 10;
+        seekbar.setMax(max);
+        seekbar.setProgress(curr);
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -36,12 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     timetablenum = progress;
                 }
-                ArrayList<String> tt = new ArrayList<>();
-                for(int j=1;i<=10;j++) {
-                    tt.add(Integer.toString(j*timetablenum));
-                }
-
-                Log.i("seek bar value",Integer.toString(timetablenum));
+                generate(timetablenum);
             }
 
             @Override
