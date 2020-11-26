@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     timetablenum = progress;
                 }
+                ArrayList<String> tt = new ArrayList<>();
+                for(int j=1;i<=10;j++) {
+                    tt.add(Integer.toString(j*timetablenum));
+                }
+
                 Log.i("seek bar value",Integer.toString(timetablenum));
             }
 
